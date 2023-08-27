@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <script src="https://kit.fontawesome.com/41c13e50fc.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm">
+
+      <header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/"><span>Bookers</span></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+
+          <% if user_signed_in? %>
+
+           <li>
+            <a class="nav-link text-light" href="<%= user_path( current_user.id) %>">
+              <i class="fa-solid fa-home" style="color: #ffffff"></i> Home
+            </a>
+           </li>
+
+           <li>
+            <a class="nav-link text-light" href="<%= users_path %>">
+              <i class="fa-solid fa-users" style="color: #ffffff"></i> Users
+            </a>
+           </li>
+          <li>
+
+          <li>
+            <a class="nav-link text-light" href="<%= books_path %>">
+              <i class="fa-solid fa-book-open" style="color: #ffffff"></i> Books
+            </a>
+          </li>
+          <li>
+
+          <li>
+            <a class="nav-link text-light" href="<%= destroy_user_session_path %>"data-method="delete">
+              <i class="fas fa-sign-out-alt" style="color: #ffffff"></i> Log out
+            </a>
+          </li>
+          <li>
+
+            <% else %>
+
+          <li>
+
+            <a class="nav-link text-light" href="<%= root_path %>">
+              <i class="fa-solid fa-home" style="color: #ffffff"></i> Home
+            </a>
+          </li>
+          <li>
+            <a class="nav-link text-light" href="<%= about_path %>">
+              <i class="fa-solid fa-link" style="color: #ffffff"></i> About
+            </a>
+          </li>
+          <li>
+            <a class="nav-link text-light" href="<%= new_user_registration_path %>">
+              <i class="fa-solid fa-user-plus" style="color: #ffffff"></i> Sign up
+            </a>
+          </li>
+          <li>
+             <a class="nav-link text-light" href="<%=  new_user_session_path %>">
+              <i class="fa-solid fa-sign-in-alt" style="color: #ffffff"></i> Log in
+             </a>
+          </li>
+
+            <% end %>
+
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<main>
+  <p><%= flash[:notice] %></p>
+</main>
+
+    <%= yield %>
+    <footer><p>CopyRight Infratop.inc</p></footer>
+  </body>
+</html>
